@@ -19,11 +19,11 @@
 
         <FrameLayout
             android:id="@+id/toolbar"
-            tools:ignore="UseCompoundDrawables"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:orientation="horizontal"
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:layout_scrollFlags="scroll|enterAlways"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="48dp"
@@ -176,6 +176,12 @@
                             android:textSize="20sp" />
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#e3e3e3" />
+
+                    <include layout="@layout/content_scrolling" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </FrameLayout>
