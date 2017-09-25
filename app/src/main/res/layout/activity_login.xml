@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.webviander.hackathonapp.viewmodel.LoginViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_bg">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="50dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/app_icon_content_description" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="30dp"
+            android:text="Hello World!">
+
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/rectangle_while_background"
+                android:drawablePadding="8dp"
+                android:drawableStart="@drawable/ic_username"
+                android:elevation="30dp"
+                android:hint="@string/username"
+                android:inputType="textPersonName"
+                android:nextFocusDown="@id/password"
+                android:padding="16dp"
+                android:text="@={viewModel.username}" />
+
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_while_background"
+                android:drawablePadding="8dp"
+                android:drawableStart="@drawable/ic_password"
+                android:elevation="20dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:nextFocusDown="@id/signin"
+                android:padding="16dp"
+                android:text="@={viewModel.password}" />
+
+
+            <Button
+                android:id="@+id/signin"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/background_gradient"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:letterSpacing="0.2"
+                android:onClick="@{viewModel::onLoginClick}"
+                android:padding="10dp"
+                android:text="@string/login"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:onClick="@{viewModel::onSignupClick}">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:text="@string/dont_have_account"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:text="@string/signup"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

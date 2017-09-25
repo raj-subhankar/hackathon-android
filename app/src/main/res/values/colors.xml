@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4B4097</color>
+    <color name="colorPrimaryDark">#A4A4A4</color>
+    <color name="colorAccent">#a3a3a3</color>
+    <color name="cardBackground">#FF3366</color>
+    <color name="white">#FFFFFF</color>
+    <color name="feeds_background">#DEDEDE</color>
+</resources>

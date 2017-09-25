@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.webviander.hackathonapp.viewmodel.FeedViewModel" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:background="@color/feeds_background">
+
+
+            <FrameLayout
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:orientation="horizontal"
+                app:layout_scrollFlags="scroll|enterAlways"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="start|center_vertical"
+                    android:contentDescription="@string/back_button_cd"
+                    android:onClick="@{viewModel::onBackClick}"
+                    android:src="@drawable/left_arrow" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:letterSpacing="0.7"
+                    android:text="@string/feeds"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </FrameLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_collapseMode="pin">
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_rectangle"
+                    android:text="Pending" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Ongoing" />
+            </LinearLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <!--<include layout="@layout/content_scrolling" />-->
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:background="@color/feeds_background"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/feed_list_item"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:id="@+id/feeds_list"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</layout>
+
+
+
