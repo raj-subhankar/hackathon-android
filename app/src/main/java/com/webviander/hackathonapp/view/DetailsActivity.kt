@@ -9,6 +9,7 @@ import com.webviander.hackathonapp.R
 import com.webviander.hackathonapp.databinding.ActivityDetailsBinding
 import com.webviander.hackathonapp.model.FeedItem
 import com.webviander.hackathonapp.viewmodel.DetailPageViewModel
+import com.webviander.hackathonapp.viewmodel.DetailsPageCallback
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -33,7 +34,11 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     fun setUpViewModel() {
-        binding.viewModel = DetailPageViewModel(feedItem,this)
+        binding.viewModel = DetailPageViewModel(feedItem, this, object : DetailsPageCallback {
+            override fun onBackPressed() {
+                onBackPressed()
+            }
+        })
     }
 
 
