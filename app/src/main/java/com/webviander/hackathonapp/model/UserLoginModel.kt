@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
 data class User(
         @SerializedName("success")
         @Expose
-        var success: Boolean? = null,
+        var success: Boolean,
         @SerializedName("message")
         @Expose
         var message: String? = null,
@@ -20,6 +20,9 @@ data class User(
         @SerializedName("email")
         @Expose
         var email: String? = null,
+        @SerializedName("name")
+        @Expose
+        var name: String? = null,
         @SerializedName("id")
         @Expose
         var id: String? = null

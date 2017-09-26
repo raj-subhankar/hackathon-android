@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Created by vivek-3102 on 26/08/17.
  */
 class ApiFactory {
-    private val BASE_URL = "http://54.149.192.204:3000/"
+    private val BASE_URL = "http://ec2-54-149-192-204.us-west-2.compute.amazonaws.com:3000/"
 
     @Suppress("HasPlatformType")
     val retrofit by lazy {
