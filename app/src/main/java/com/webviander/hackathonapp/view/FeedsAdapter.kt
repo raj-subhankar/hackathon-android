@@ -22,17 +22,14 @@ class FeedsAdapter : RecyclerView.Adapter<FeedsItemViewHolder>() {
         }
 
     override fun getItemCount(): Int {
-        Log.d("getItemCount", "called")
         return feedsList.size
     }
 
     override fun onBindViewHolder(holder: FeedsItemViewHolder?, position: Int) {
-        Log.d("onBindViewHolder", "called")
         holder?.bindFeed(feedsList[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): FeedsItemViewHolder {
-        Log.d("onCreateViewHolder", "called")
         val itemBinding: FeedListItemBinding = DataBindingUtil.inflate<FeedListItemBinding>(LayoutInflater.from(parent?.context), R.layout.feed_list_item, parent, false)
         return FeedsItemViewHolder(itemBinding)
     }

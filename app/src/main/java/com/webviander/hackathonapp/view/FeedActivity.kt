@@ -25,12 +25,10 @@ class FeedActivity : AppCompatActivity(), Observer {
         setUpFeeds(binding.feedsList)
         binding.viewModel?.let { setUpObserver(it) }
         binding.viewModel?.loadFeeds()
-
-
     }
 
     fun initLayouts() {
-        binding = DataBindingUtil.setContentView<ActivityFeedBinding>(this, R.layout.activity_feed)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_feed)
     }
 
     fun setUpViewModel() {
@@ -55,6 +53,8 @@ class FeedActivity : AppCompatActivity(), Observer {
                     onBackPressed()
                 } else if (p1 == p0.feedsLoadedTag) {
                     onFeedsLoaded(p0.feedsList)
+                } else if (p1 == p0.addFeedsClickedTag) {
+                    onAddClicked()
                 }
             }
         }
@@ -64,6 +64,10 @@ class FeedActivity : AppCompatActivity(), Observer {
     fun onFeedsLoaded(feedsList: ArrayList<FeedItem>) {
         val adapter = binding.feedsList.adapter as FeedsAdapter
         adapter.feedsList = feedsList
+    }
+
+    fun onAddClicked() {
+        startActivity(AddFeedActivity.getIntent(this))
     }
 
     companion object {

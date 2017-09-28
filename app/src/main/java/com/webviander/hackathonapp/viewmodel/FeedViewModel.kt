@@ -13,12 +13,13 @@ import kotlin.collections.ArrayList
 class FeedViewModel(val context: Context) : Observable() {
     val backPressedTag = "BACK_PRESSED"
     val feedsLoadedTag = "FEEDS_LOADED"
+    val addFeedsClickedTag = "ADD_FEEDS"
     var feedsList: ArrayList<FeedItem> = ArrayList()
 
-     fun loadFeeds() {
-         (0..10)
-                 .map { FeedItem(it.toString(), "Vivek Chanddru+$it", context.resources.getString(R.string.dummy_content), System.currentTimeMillis(), 10+ it, 20+ it, 30- it) }
-                 .forEach { feedsList.add(it) }
+    fun loadFeeds() {
+        (0..10)
+                .map { FeedItem(it.toString(), "Vivek Chanddru+$it", context.resources.getString(R.string.dummy_content), System.currentTimeMillis(), 10 + it, 20 + it, 30 - it) }
+                .forEach { feedsList.add(it) }
         setChanged()
         notifyObservers(feedsLoadedTag)
     }
@@ -26,6 +27,11 @@ class FeedViewModel(val context: Context) : Observable() {
     fun onBackClick(view: View) {
         setChanged()
         notifyObservers(backPressedTag)
+    }
+
+    fun onAddFeedClick(view: View) {
+        setChanged()
+        notifyObservers(addFeedsClickedTag)
     }
 
 }

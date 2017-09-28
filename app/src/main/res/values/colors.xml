@@ -6,4 +6,5 @@
     <color name="cardBackground">#FF3366</color>
     <color name="white">#FFFFFF</color>
     <color name="feeds_background">#DEDEDE</color>
+    <color name="transparent">#00000000</color>
 </resources>
