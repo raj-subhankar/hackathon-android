@@ -13,7 +13,6 @@ import retrofit2.http.Query
  */
 interface FeedsService {
 
-    @FormUrlEncoded
     @GET("posts/all")
     fun getFeeds(@Query("lat") latitude: String, @Query("lng") longitude: String): Call<List<FeedItem>>
 

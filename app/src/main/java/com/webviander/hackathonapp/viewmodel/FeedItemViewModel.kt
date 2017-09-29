@@ -15,23 +15,23 @@ class FeedItemViewModel(var feedItem: FeedItem,var context: Context): BaseObserv
         return feedItem.timeStamp.toString()
     }
     fun getTitleText(): String {
-        return feedItem.posterName+" has posted this message"
+        return feedItem.postedBy.name+" has posted this message"
     }
 
     fun getPostBody():String {
-        return feedItem.postBody
+        return feedItem.messageBody
     }
 
     fun getThumbsUp() :String {
-        return feedItem.likesCount.toString()
+        return feedItem.upVoteCount.toString()
     }
 
     fun getThumbsDown() :String {
-        return feedItem.dislikesCount.toString()
+        return feedItem.downVoteCount.toString()
     }
 
     fun getCommentsCount() : String {
-        return feedItem.commentsCount.toString()
+        return feedItem.commentCount.toString()
     }
 
     fun onItemClick(view: View) {

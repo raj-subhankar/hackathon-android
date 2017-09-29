@@ -2,18 +2,21 @@ package com.webviander.hackathonapp.viewmodel
 
 import android.content.Context
 import android.databinding.BaseObservable
-import com.webviander.hackathonapp.model.CommentItem
+import com.webviander.hackathonapp.model.Comment
 
 /**
  * Created by vivek-3102 on 23/09/17.
  */
-class CommentItemViewModel(var commentItem: CommentItem, var context: Context) : BaseObservable() {
+class CommentItemViewModel(var commentItem: Comment, var context: Context) : BaseObservable() {
 
     fun getPosterName(): String {
-        return commentItem.postedBy.name
+        commentItem.postedBy.name?.let {
+            return it
+        }
+        return "Guest"
     }
 
     fun getCommentText(): String {
-        return commentItem.commentBody
+        return commentItem.messageBody
     }
 }

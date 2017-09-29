@@ -40,5 +40,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.pixplicity.easyprefs:library:1.9.0'
-
+    implementation 'com.akhgupta:android-easylocation:1.0.1'
+    implementation "com.google.android.gms:play-services-location:11.4.0"
 }

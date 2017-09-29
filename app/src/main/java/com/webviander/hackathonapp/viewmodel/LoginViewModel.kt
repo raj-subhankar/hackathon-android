@@ -26,11 +26,11 @@ class LoginViewModel(val context: Context) : Observable() {
     val password = ObservableField<String>("")
 
     init {
-//        if(Prefs.getString(PreferenceUtil.USERID,null) != null) {
-//            //user is logged in.
-//            context.startActivity(FeedActivity.getIntent(context))
-//            (context as Activity).finish()
-//        }
+        if (Prefs.getString(PreferenceUtil.USERID, null) != null) {
+            //user is logged in.
+            context.startActivity(FeedActivity.getIntent(context))
+            (context as Activity).finish()
+        }
     }
 
     fun onLoginClick(view: View) {
