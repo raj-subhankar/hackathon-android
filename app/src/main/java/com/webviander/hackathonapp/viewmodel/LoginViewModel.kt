@@ -26,8 +26,10 @@ class LoginViewModel(val context: Context) : Observable() {
     val password = ObservableField<String>("")
 
     init {
-        if (Prefs.getString(PreferenceUtil.USERID, null) != null) {
+        val userId = Prefs.getString(PreferenceUtil.USERID, null)
+        if (userId != null) {
             //user is logged in.
+            Log.d("UserLoggedIn", userId)
             context.startActivity(FeedActivity.getIntent(context))
             (context as Activity).finish()
         }
