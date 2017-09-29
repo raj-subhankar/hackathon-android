@@ -5,11 +5,15 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.webviander.hackathonapp.R
 import com.webviander.hackathonapp.databinding.ActivityDetailsBinding
+import com.webviander.hackathonapp.model.CommentItem
 import com.webviander.hackathonapp.model.FeedItem
 import com.webviander.hackathonapp.viewmodel.DetailPageViewModel
 import com.webviander.hackathonapp.viewmodel.DetailsPageCallback
+import kotlinx.android.synthetic.main.activity_details.*
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -22,6 +26,9 @@ class DetailsActivity : AppCompatActivity() {
         populateFromIntent(intent)
         initLayouts()
         setUpViewModel()
+        setUpComments(comments_list)
+        binding.viewModel?.loadComments()
+
 //        binding.viewModel?.let { setUpObserver(it) }
     }
 
@@ -38,7 +45,19 @@ class DetailsActivity : AppCompatActivity() {
             override fun onBackPressed() {
                 onBackPressed()
             }
+
+            override fun onCommentsLoaded(commentsList: ArrayList<CommentItem>) {
+                val adapter = binding.commentsList.adapter as CommentsAdapter
+                adapter.commentsList = commentsList
+
+            }
         })
+    }
+
+    fun setUpComments(recyclerView: RecyclerView) {
+        val adapter = CommentsAdapter()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
 

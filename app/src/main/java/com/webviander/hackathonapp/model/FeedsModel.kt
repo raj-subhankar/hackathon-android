@@ -71,8 +71,15 @@ data class UserDetails(
         @SerializedName("__v")
         @Expose
         var v: Int? = null,
+        var name:String,
         @SerializedName("loginAttempts")
         @Expose
         var loginAttempts: Int? = null
+)
 
+
+data class CommentItem(
+        var id: String,
+        var commentBody: String,
+        var postedBy: UserDetails
 )
