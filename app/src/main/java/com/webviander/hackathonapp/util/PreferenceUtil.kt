@@ -9,5 +9,6 @@ class PreferenceUtil {
         val USERNAME = "username"
         val USEREMAIL = "useremail"
         val USERTOKEN= "usertoken"
+        val ISREPRESENTATIVE= "isRepresentative"
     }
 }

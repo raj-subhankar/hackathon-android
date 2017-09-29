@@ -105,4 +105,8 @@
     <string name="action_settings">Settings</string>
     <string name="details">Details</string>
     <string name="add_post">Add Post</string>
+    <string name="aadhar_card">Aadhar Number</string>
+    <string name="is_representative">Are you an elected representative?</string>
+    <string name="email">Email id</string>
+    <string name="full_name">Full name</string>
 </resources>

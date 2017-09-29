@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <data>
@@ -43,78 +43,144 @@
         </FrameLayout>
 
 
-        <android.support.v7.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_margin="32dp"
-            android:layout_weight="1"
-            app:cardElevation="30dp">
+            android:gravity="center"
+            android:orientation="vertical">
 
-
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                app:cardElevation="50dp">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:elevation="40dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/avatar"
-                    android:contentDescription="@string/user_avatar_cd" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/username"
+                    <!--<ImageView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:elevation="40dp"-->
+                    <!--android:scaleType="centerCrop"-->
+                    <!--android:src="@drawable/avatar"-->
+                    <!--android:contentDescription="@string/user_avatar_cd" />-->
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:background="@drawable/rectangle_while_background"
-                        android:drawableStart="@drawable/ic_username"
-                        android:drawablePadding="8dp"
-                        android:elevation="10dp"
-                        android:hint="@string/username"
-                        android:inputType="textPersonName"
-                        android:nextFocusDown="@id/password"
-                        android:padding="16dp"
-                        android:text="@={viewModel.username}" />
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:background="@drawable/rectangle_while_background"
+                            android:drawablePadding="8dp"
+                            android:drawableStart="@drawable/ic_username"
+                            android:elevation="40dp"
+                            android:fontFamily="@font/montserrat"
+                            android:hint="@string/full_name"
+                            android:inputType="textPersonName"
+                            android:nextFocusDown="@id/username"
+                            android:padding="16dp"
+                            android:text="@={viewModel.name}" />
+
+                        <EditText
+                            android:id="@+id/username"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:background="@drawable/rectangle_while_background"
+                            android:drawablePadding="8dp"
+                            android:drawableStart="@drawable/ic_username"
+                            android:elevation="30dp"
+                            android:fontFamily="@font/montserrat"
+                            android:hint="@string/email"
+                            android:inputType="textEmailAddress"
+                            android:nextFocusDown="@id/password"
+                            android:padding="16dp"
+                            android:text="@={viewModel.username}" />
 
 
-                    <EditText
-                        android:id="@+id/password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rectangle_while_background"
-                        android:drawableStart="@drawable/ic_password"
-                        android:drawablePadding="8dp"
-                        android:elevation="5dp"
-                        android:hint="@string/password"
-                        android:inputType="textPassword"
-                        android:nextFocusDown="@id/signin"
-                        android:padding="16dp"
-                        android:text="@={viewModel.password}" />
+                        <EditText
+                            android:id="@+id/password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:background="@drawable/rectangle_while_background"
+                            android:drawablePadding="8dp"
+                            android:drawableStart="@drawable/ic_password"
+                            android:elevation="20dp"
+                            android:fontFamily="@font/montserrat"
+                            android:hint="@string/password"
+                            android:inputType="textPassword"
+                            android:nextFocusDown="@id/signin"
+                            android:padding="16dp"
+                            android:text="@={viewModel.password}" />
+
+                        <EditText
+                            android:id="@+id/aadhar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:background="@drawable/rectangle_while_background"
+                            android:drawablePadding="8dp"
+                            android:drawableStart="@drawable/id_card"
+                            android:elevation="10dp"
+                            android:fontFamily="@font/montserrat"
+                            android:hint="@string/aadhar_card"
+                            android:inputType="number"
+                            android:nextFocusDown="@id/signin"
+                            android:padding="16dp"
+                            android:text="@={viewModel.aadhar}" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/is_representative" />
+
+                            <android.support.v7.widget.SwitchCompat
+                                android:id="@+id/representative_toggle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:checked="@={viewModel.isRepresentative}" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
+            </android.support.v7.widget.CardView>
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_gradient"
-            android:onClick="@{viewModel::onSignupClick}"
-            android:padding="20dp"
-            android:letterSpacing="0.2"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/register" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@drawable/background_gradient"
+                android:fontFamily="@font/montserrat_bold"
+                android:letterSpacing="0.2"
+                android:onClick="@{viewModel::onSignupClick}"
+                android:padding="20dp"
+                android:text="@string/register" />
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

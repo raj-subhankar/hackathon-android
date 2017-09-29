@@ -17,13 +17,23 @@ data class User(
         @SerializedName("token")
         @Expose
         var token: String? = null,
-        @SerializedName("email")
-        @Expose
-        var email: String? = null,
         @SerializedName("name")
         @Expose
-        var name: String? = null,
+        var name: String,
+        @SerializedName("email")
+        @Expose
+        var email: String,
         @SerializedName("id")
         @Expose
-        var id: String? = null
+        var id: String? = null,
+        @SerializedName("profilePic")
+        @Expose
+        var profilePicUrl: String? = null,
+        @SerializedName("isRepresentative")
+        @Expose
+        var isRepresentative: Boolean,
+        @SerializedName("aadhaarNumber")
+        @Expose
+        var aadhaarNumber: String? = null
+
 )

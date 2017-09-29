@@ -18,10 +18,10 @@
             android:layout_height="150dp"
             android:layout_gravity="center|top"
             android:layout_marginTop="50dp"
+            android:contentDescription="@string/app_icon_content_description"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:src="@mipmap/ic_launcher"
-            android:contentDescription="@string/app_icon_content_description" />
+            android:src="@mipmap/ic_launcher" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,12 +35,13 @@
 
             <EditText
                 android:id="@+id/username"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/rectangle_while_background"
                 android:drawablePadding="8dp"
                 android:drawableStart="@drawable/ic_username"
+                android:fontFamily="@font/montserrat"
                 android:elevation="30dp"
                 android:hint="@string/username"
                 android:inputType="textPersonName"
@@ -51,12 +52,14 @@
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
                 android:background="@drawable/rectangle_while_background"
                 android:drawablePadding="8dp"
                 android:drawableStart="@drawable/ic_password"
                 android:elevation="20dp"
+                android:fontFamily="@font/montserrat"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:nextFocusDown="@id/signin"
@@ -100,8 +103,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:paddingStart="5dp"
                     android:paddingEnd="5dp"
+                    android:paddingStart="5dp"
                     android:text="@string/signup"
                     android:textColor="@color/white"
                     android:textSize="20sp" />

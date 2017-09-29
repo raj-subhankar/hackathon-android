@@ -17,5 +17,5 @@ interface UserLoginService {
 
     @FormUrlEncoded
     @POST("users/add")
-    fun createUser(@Field("email") username: String, @Field("password") password: String): Call<User>
+    fun createUser(@Field("email") email: String, @Field("password") password: String, @Field("name") name: String, @Field("isRepresentative") isRepresentative: Boolean, @Field("aadhaarNumber") aadhaarNumber: String): Call<User>
 }
