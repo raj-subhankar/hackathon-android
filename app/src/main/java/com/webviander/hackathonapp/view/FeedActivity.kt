@@ -33,7 +33,6 @@ class FeedActivity : EasyLocationAppCompatActivity(), Observer {
         binding.viewModel?.let { setUpObserver(it) }
         setUpLocation()
         setUpLocalLocation()
-
     }
 
     fun initLayouts() {
