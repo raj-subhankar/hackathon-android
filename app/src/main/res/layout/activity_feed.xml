@@ -13,6 +13,7 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/coordinator"
         android:background="@color/feeds_background"
         android:fitsSystemWindows="true">
 
@@ -112,7 +113,7 @@
 
         <LinearLayout
             android:id="@+id/loading_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="gone">
@@ -125,6 +126,33 @@
                 app:lottie_autoPlay="true"
                 app:lottie_fileName="cube_loader.json"
                 app:lottie_loop="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/empty_lottie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="empty_box.json"
+                app:lottie_loop="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:text="No posts near your location! \nRaise your voice and let it be heard. \nCreate a new post now!" />
         </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>

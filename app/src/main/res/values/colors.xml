@@ -5,7 +5,7 @@
     <color name="colorAccent">#a3a3a3</color>
     <color name="cardBackground">#FF3366</color>
     <color name="white">#FFFFFF</color>
-    <color name="feeds_background">#DEDEDE</color>
+    <color name="feeds_background">#dadada</color>
     <color name="transparent">#00000000</color>
     <color name="icon_color">#b8282828</color>
 </resources>
