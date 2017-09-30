@@ -76,6 +76,7 @@ class FeedActivity : EasyLocationAppCompatActivity(), Observer {
             //we have old location data. use it and display first.
             // later when location is got, we can refresh with new data
             loading_view.visibility= View.VISIBLE
+            feeds_list.visibility = View.GONE
             binding.viewModel?.loadFeeds(prefLat.toDouble(), prefLng.toDouble())
         }
     }
@@ -104,6 +105,7 @@ class FeedActivity : EasyLocationAppCompatActivity(), Observer {
 
     fun onFeedsLoaded(feedsList: ArrayList<FeedItem>) {
         loading_view.visibility= View.GONE
+        feeds_list.visibility = View.VISIBLE
         val adapter = binding.feedsList.adapter as FeedsAdapter
         adapter.feedsList = feedsList
     }

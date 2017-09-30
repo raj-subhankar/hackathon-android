@@ -16,10 +16,12 @@ import com.webviander.hackathonapp.model.UpdatePostModel
 import com.webviander.hackathonapp.model.VoteModel
 import com.webviander.hackathonapp.util.PreferenceUtil
 import com.webviander.hackathonapp.view.DetailsActivity
+import com.webviander.hackathonapp.view.FeedActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
+
 
 /**
  * Created by vivek-3102 on 23/09/17.
@@ -28,7 +30,7 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
 
     val dateFormat = SimpleDateFormat("dd-MM :: hh:mm")
     fun getTimeStamp(): String {
-        return feedItem.timeStamp.substring(0,10)
+        return feedItem.timeStamp.substring(0, 10)
     }
 
     fun getPickedUpBy(): String {
@@ -161,6 +163,11 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
                     if (updatePostModel?.message.equals("Post updated")) {
                         //success
                         feedItem.postedBy = FeedUser(userId)
+                        if(isFromFeedsList) {
+                            if(context is FeedActivity) {
+                                (context as FeedActivity).setUpLocalLocation()
+                            }
+                        }
                     }
                 }
 
