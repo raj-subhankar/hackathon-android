@@ -1,5 +1,6 @@
 package com.webviander.hackathonapp.view
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -48,7 +49,8 @@ class RegisterActivity : AppCompatActivity(), Observer {
         if (p0 is RegisterViewModel) {
             p1?.let {
                 if (p1 == p0.backPressedTag) {
-                    onBackPressed()
+                    startActivity(FeedActivity.getIntent(this))
+                    finish()
                 }
             }
         }

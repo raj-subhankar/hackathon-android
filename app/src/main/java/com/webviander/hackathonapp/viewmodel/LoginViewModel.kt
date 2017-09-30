@@ -55,9 +55,8 @@ class LoginViewModel(val context: Context) : Observable() {
                     Prefs.putString(PreferenceUtil.ISREPRESENTATIVE, user.isRepresentative.toString())
                     context.startActivity(FeedActivity.getIntent(context))
                     (context as Activity).finish()
-                }
-                else {
-                    Toast.makeText(context,user.message,Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, user.message, Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -79,9 +78,8 @@ class LoginViewModel(val context: Context) : Observable() {
                     override fun onFailure(call: Call<User>?, t: Throwable?) {
                         Log.d("onFailure", "called")
                         t?.printStackTrace()
-                        Toast.makeText(context,"Something went wrong! Please try later",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Something went wrong! Please try later", Toast.LENGTH_SHORT).show()
                     }
-
                 })
             }
         }
@@ -91,5 +89,6 @@ class LoginViewModel(val context: Context) : Observable() {
     fun onSignupClick(view: View) {
         //signup is clicked
         context.startActivity(RegisterActivity.getIntent(context))
+        (context as Activity).finish()
     }
 }
