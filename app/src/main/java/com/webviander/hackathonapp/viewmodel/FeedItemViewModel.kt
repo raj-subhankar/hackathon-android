@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat
 /**
  * Created by vivek-3102 on 23/09/17.
  */
-class FeedItemViewModel(var feedItem: FeedItem, var context: Context) : BaseObservable() {
+class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFromFeedsList: Boolean) : BaseObservable() {
 
     val dateFormat = SimpleDateFormat("dd-MM :: hh:mm")
     fun getTimeStamp(): String {
@@ -60,6 +60,13 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context) : BaseObse
         return feedItem.commentCount.toString()
     }
 
+    fun getLinesCount() = if (isFromFeedsList) {
+        3
+    } else {
+        0
+    }
+
+
     fun shouldShowPickup(): Int {
         val isRep = Prefs.getString(PreferenceUtil.ISREPRESENTATIVE, null)
 
@@ -87,7 +94,9 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context) : BaseObse
     }
 
     fun onItemClick(view: View) {
-        context.startActivity(DetailsActivity.getIntent(view.context, feedItem))
+        if (isFromFeedsList) {
+            context.startActivity(DetailsActivity.getIntent(view.context, feedItem))
+        }
     }
 
     fun onThumbsUp(view: View) {

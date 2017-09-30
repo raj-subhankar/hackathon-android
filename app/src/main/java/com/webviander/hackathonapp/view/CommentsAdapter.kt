@@ -81,7 +81,7 @@ class PostItemViewHolder(val itemBinding: FeedListItemBinding?) : RecyclerView.V
     internal fun bindFeed(feedItem: FeedItem?) {
         feedItem?.let {
             if (itemBinding?.viewModel == null) {
-                itemBinding?.viewModel = FeedItemViewModel(it, itemView.context)
+                itemBinding?.viewModel = FeedItemViewModel(it, itemView.context,false)
             } else {
                 itemBinding.viewModel?.feedItem = it
                 itemBinding.viewModel?.notifyChange()

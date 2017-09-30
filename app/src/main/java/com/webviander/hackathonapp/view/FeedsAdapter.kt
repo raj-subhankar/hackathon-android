@@ -42,7 +42,7 @@ class FeedsItemViewHolder(val itemBinding: FeedListItemBinding?) : RecyclerView.
 
     internal fun bindFeed(feedItem: FeedItem) {
         if (itemBinding?.viewModel == null) {
-            itemBinding?.viewModel = FeedItemViewModel(feedItem, itemView.context)
+            itemBinding?.viewModel = FeedItemViewModel(feedItem, itemView.context,true)
         } else {
             itemBinding.viewModel?.feedItem = feedItem
             itemBinding.viewModel?.notifyChange()
