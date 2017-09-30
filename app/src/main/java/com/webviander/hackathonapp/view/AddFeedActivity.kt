@@ -73,6 +73,7 @@ class AddFeedActivity : EasyLocationAppCompatActivity(), Observer {
                     if (locationReceived) {
                         //we already have location and now save is clicked. do api
                         loading_view.visibility = View.VISIBLE
+                        add_post_edittext.visibility = View.GONE
                         binding.viewModel?.addPostApi(storedLocation?.latitude.toString(), storedLocation?.longitude.toString())
                     } else {
                         //save is clicked but location is not yet received. check in prefs
@@ -81,6 +82,7 @@ class AddFeedActivity : EasyLocationAppCompatActivity(), Observer {
                         if (prefLat != null && prefLng != null) {
                             //we have old location data. use it
                             loading_view.visibility = View.VISIBLE
+                            add_post_edittext.visibility = View.GONE
                             binding.viewModel?.addPostApi(prefLat, prefLng)
                         } else {
                             //no location data at all!

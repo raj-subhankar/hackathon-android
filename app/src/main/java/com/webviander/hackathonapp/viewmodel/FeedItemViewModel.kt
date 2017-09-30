@@ -155,6 +155,7 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
 
     fun onPickupClick(view: View) {
         val userId = Prefs.getString(PreferenceUtil.USERID, null)
+        val userName = Prefs.getString(PreferenceUtil.USERNAME, null)
         userId?.let {
             ApiFactory().createFeedsService().addAssignee(feedItem.id, it).enqueue(object : Callback<UpdatePostModel> {
                 override fun onResponse(call: Call<UpdatePostModel>?, response: Response<UpdatePostModel>?) {
@@ -162,11 +163,13 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
                     val updatePostModel = response?.body()
                     if (updatePostModel?.message.equals("Post updated")) {
                         //success
-                        feedItem.postedBy = FeedUser(userId)
-                        if(isFromFeedsList) {
-                            if(context is FeedActivity) {
+                        feedItem.pickedUpBy = FeedUser(userId, name = userName)
+                        if (isFromFeedsList) {
+                            if (context is FeedActivity) {
                                 (context as FeedActivity).setUpLocalLocation()
                             }
+                        } else {
+                            notifyChange()
                         }
                     }
                 }
