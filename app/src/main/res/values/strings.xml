@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HackathonApp</string>
+    <string name="app_name">Manifesto</string>
     <string name="signup">SignUp</string>
     <string name="dont_have_account">Don’t have an account?</string>
     <string name="login">Signin</string>
