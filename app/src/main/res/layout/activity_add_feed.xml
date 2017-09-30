@@ -10,70 +10,92 @@
             type="com.webviander.hackathonapp.viewmodel.AddFeedViewModel" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-
-        <FrameLayout
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:background="@color/feeds_background"
-
-            android:orientation="horizontal"
-            app:layout_scrollFlags="scroll|enterAlways"
-            tools:ignore="UseCompoundDrawables">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="5dp"
-                android:layout_gravity="start|center_vertical"
-                android:contentDescription="@string/back_button_cd"
-                android:onClick="@{viewModel::onBackClick}"
-                android:src="@drawable/left_arrow" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/montserrat"
-                android:gravity="center"
-                android:letterSpacing="0.3"
-                android:text="@string/add_post"
-                android:textAllCaps="true"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="5dp"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="@string/back_button_cd"
-                android:onClick="@{viewModel::onSavePost}"
-                android:src="@drawable/save_post" />
-        </FrameLayout>
-
-
-        <EditText
-            android:id="@+id/add_post_edittext"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent"
-            android:gravity="start|top"
-            android:fontFamily="@font/montserrat"
-            android:padding="30dp"
-            android:lineSpacingExtra="6dp"
-            android:textAlignment="viewStart"
-            android:text="@={viewModel.postBody}"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:fitsSystemWindows="true"
+            android:orientation="vertical">
 
 
+            <FrameLayout
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/feeds_background"
+
+                android:orientation="horizontal"
+                app:layout_scrollFlags="scroll|enterAlways"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="start|center_vertical"
+                    android:contentDescription="@string/back_button_cd"
+                    android:onClick="@{viewModel::onBackClick}"
+                    android:padding="5dp"
+                    android:src="@drawable/left_arrow" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:letterSpacing="0.3"
+                    android:text="@string/add_post"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:contentDescription="@string/back_button_cd"
+                    android:onClick="@{viewModel::onSavePost}"
+                    android:padding="5dp"
+                    android:src="@drawable/save_post" />
+            </FrameLayout>
+
+
+            <EditText
+                android:id="@+id/add_post_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start|top"
+                android:lineSpacingExtra="6dp"
+                android:padding="30dp"
+                android:text="@={viewModel.postBody}"
+                android:textAlignment="viewStart"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/loading_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="cube_loader.json"
+                app:lottie_loop="true" />
+        </LinearLayout>
+    </FrameLayout>
 </layout>
 
 

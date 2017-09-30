@@ -28,7 +28,7 @@ interface FeedsService {
     fun addPost(@Field("user") userId: String, @Field("messageTitle") messageTitle: String, @Field("messageBody") messageBody: String, @Field("lat") latitude: String, @Field("lng") longitude: String): Call<AddPostModel>
 
     @FormUrlEncoded
-    @POST("posts/{id}")
+    @PUT("posts/{id}")
     fun addAssignee(@Path("id") postId: String, @Field("pickedUpBy") pickedUpBy: String): Call<UpdatePostModel>
 
 

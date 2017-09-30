@@ -39,11 +39,12 @@ class AddFeedViewModel(val context: Context) : Observable() {
     }
 
     fun addPostApi(lat: String, lng: String) {
+        Log.d("addPostApi", "$lat $lng")
         val userId = Prefs.getString(PreferenceUtil.USERID, null)
         userId?.let {
             ApiFactory().createFeedsService().addPost(userId, "Some Sample title", postBody.get(), lat, lng).enqueue(object : Callback<AddPostModel> {
                 override fun onResponse(call: Call<AddPostModel>?, response: Response<AddPostModel>?) {
-                    Log.d("onResponse", "called ${response?.body()}")
+                    Log.d("onResponse", "called ${response?.body()} ${call?.request()?.url()}")
                     context.startActivity(FeedActivity.getIntent(context))
                     (context as Activity).finish()
                 }

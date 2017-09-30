@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.location.Location
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.View
 import com.akhgupta.easylocation.EasyLocationAppCompatActivity
 import com.akhgupta.easylocation.EasyLocationRequestBuilder
 import com.google.android.gms.location.LocationRequest
@@ -73,6 +75,7 @@ class FeedActivity : EasyLocationAppCompatActivity(), Observer {
         if (prefLat != null && prefLng != null) {
             //we have old location data. use it and display first.
             // later when location is got, we can refresh with new data
+            loading_view.visibility= View.VISIBLE
             binding.viewModel?.loadFeeds(prefLat.toDouble(), prefLng.toDouble())
         }
     }
@@ -100,6 +103,7 @@ class FeedActivity : EasyLocationAppCompatActivity(), Observer {
 
 
     fun onFeedsLoaded(feedsList: ArrayList<FeedItem>) {
+        loading_view.visibility= View.GONE
         val adapter = binding.feedsList.adapter as FeedsAdapter
         adapter.feedsList = feedsList
     }
@@ -136,6 +140,7 @@ class FeedActivity : EasyLocationAppCompatActivity(), Observer {
 //            binding.viewModel?.loadFeeds(12.8333, 80.0667)
             Prefs.putString(PreferenceUtil.LATITUDE, location.latitude.toString())
             Prefs.putString(PreferenceUtil.LONGITUDE, location.longitude.toString())
+            loading_view.visibility= View.VISIBLE
             binding.viewModel?.loadFeeds(location.latitude, location.longitude)
         }
     }

@@ -19,8 +19,8 @@
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:elevation="0dp"
-            android:background="@color/feeds_background">
+            android:background="@color/feeds_background"
+            app:elevation="0dp">
 
 
             <FrameLayout
@@ -34,10 +34,10 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:padding="5dp"
                     android:layout_gravity="start|center_vertical"
                     android:contentDescription="@string/back_button_cd"
                     android:onClick="@{viewModel::onBackClick}"
+                    android:padding="5dp"
                     android:src="@drawable/left_arrow" />
 
                 <TextView
@@ -54,11 +54,11 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:padding="5dp"
-                    android:layout_marginEnd="10dp"
                     android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="10dp"
                     android:contentDescription="@string/back_button_cd"
                     android:onClick="@{viewModel::onAddFeedClick}"
+                    android:padding="5dp"
                     android:src="@drawable/add_feed" />
             </FrameLayout>
 
@@ -66,31 +66,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 app:layout_collapseMode="pin">
 
                 <Button
+                    android:id="@+id/pending"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:id="@+id/pending"
-                    android:onClick="@{viewModel.onPendingClick}"
                     android:background="@drawable/border_rectangle"
+                    android:onClick="@{viewModel.onPendingClick}"
                     android:text="Pending" />
 
                 <Button
+                    android:id="@+id/ongoing"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:id="@+id/ongoing"
                     android:onClick="@{viewModel.onOngoingClick}"
                     android:text="Ongoing" />
             </LinearLayout>
@@ -99,15 +99,33 @@
 
         <!--<include layout="@layout/content_scrolling" />-->
 
+
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/feeds_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
             android:background="@color/feeds_background"
+            android:clipToPadding="false"
             android:scrollbars="vertical"
-            tools:listitem="@layout/feed_list_item"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:id="@+id/feeds_list"/>
+            tools:listitem="@layout/feed_list_item" />
+
+        <LinearLayout
+            android:id="@+id/loading_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="cube_loader.json"
+                app:lottie_loop="true" />
+        </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

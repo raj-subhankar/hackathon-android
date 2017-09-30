@@ -28,7 +28,7 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
 
     val dateFormat = SimpleDateFormat("dd-MM :: hh:mm")
     fun getTimeStamp(): String {
-        return feedItem.timeStamp
+        return feedItem.timeStamp.substring(0,10)
     }
 
     fun getPickedUpBy(): String {

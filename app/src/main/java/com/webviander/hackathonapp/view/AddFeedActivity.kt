@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.akhgupta.easylocation.EasyLocationAppCompatActivity
 import com.akhgupta.easylocation.EasyLocationRequestBuilder
@@ -15,6 +16,7 @@ import com.webviander.hackathonapp.R
 import com.webviander.hackathonapp.databinding.ActivityAddFeedBinding
 import com.webviander.hackathonapp.util.PreferenceUtil
 import com.webviander.hackathonapp.viewmodel.AddFeedViewModel
+import kotlinx.android.synthetic.main.activity_add_feed.*
 import java.util.*
 
 class AddFeedActivity : EasyLocationAppCompatActivity(), Observer {
@@ -70,6 +72,7 @@ class AddFeedActivity : EasyLocationAppCompatActivity(), Observer {
                     saveClicked = true
                     if (locationReceived) {
                         //we already have location and now save is clicked. do api
+                        loading_view.visibility = View.VISIBLE
                         binding.viewModel?.addPostApi(storedLocation?.latitude.toString(), storedLocation?.longitude.toString())
                     } else {
                         //save is clicked but location is not yet received. check in prefs
@@ -77,6 +80,7 @@ class AddFeedActivity : EasyLocationAppCompatActivity(), Observer {
                         val prefLng = Prefs.getString(PreferenceUtil.LONGITUDE, null)
                         if (prefLat != null && prefLng != null) {
                             //we have old location data. use it
+                            loading_view.visibility = View.VISIBLE
                             binding.viewModel?.addPostApi(prefLat, prefLng)
                         } else {
                             //no location data at all!
@@ -109,11 +113,12 @@ class AddFeedActivity : EasyLocationAppCompatActivity(), Observer {
     }
 
     override fun onLocationReceived(location: Location?) {
-        Log.d("onLocationReceived", "called")
+        Log.d("onLocationReceived", "called " + location.toString())
         locationReceived = true
         location?.let {
             Prefs.putString(PreferenceUtil.LATITUDE, location.latitude.toString())
             Prefs.putString(PreferenceUtil.LONGITUDE, location.longitude.toString())
+            storedLocation = location
         }
     }
 
