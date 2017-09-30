@@ -5,6 +5,7 @@ import android.databinding.BaseObservable
 import android.databinding.ObservableField
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.pixplicity.easyprefs.library.Prefs
 import com.webviander.hackathonapp.data.ApiFactory
 import com.webviander.hackathonapp.model.Comment
@@ -25,7 +26,7 @@ class DetailPageViewModel(var feedItem: FeedItem, var context: Context, var deta
     var commentText: ObservableField<String> = ObservableField("")
     fun loadComments() {
         commentList.addAll(feedItem.comments)
-        detailsPageCallback.onCommentsLoaded(commentList,false)
+        detailsPageCallback.onCommentsLoaded(commentList, false)
     }
 
     fun onBackClick(view: View) {
@@ -33,20 +34,21 @@ class DetailPageViewModel(var feedItem: FeedItem, var context: Context, var deta
     }
 
     fun onSendClick(view: View) {
-        Log.d("onSend", commentText.get()+" "+feedItem.id+" "+Prefs.getString(PreferenceUtil.USERID,""))
+        Log.d("onSend", commentText.get() + " " + feedItem.id + " " + Prefs.getString(PreferenceUtil.USERID, ""))
 
-        val userId = Prefs.getString(PreferenceUtil.USERID,null)
-        val userName = Prefs.getString(PreferenceUtil.USERNAME,"Guest")
+        val userId = Prefs.getString(PreferenceUtil.USERID, null)
+        val userName = Prefs.getString(PreferenceUtil.USERNAME, "Guest")
+        val profilePic = Prefs.getString(PreferenceUtil.USERPROFILEPIC, "")
         userId?.let {
-            ApiFactory().createFeedsService().addComment(feedItem.id,it,commentText.get()).enqueue(object : Callback<UpdatePostModel> {
+            ApiFactory().createFeedsService().addComment(feedItem.id, it, commentText.get()).enqueue(object : Callback<UpdatePostModel> {
                 override fun onResponse(call: Call<UpdatePostModel>?, response: Response<UpdatePostModel>?) {
                     Log.d("onResponse", "called")
                     val body = response?.body()
                     body?.let {
-                        if(it.message == "comment inserted") {
+                        if (it.message == "comment inserted") {
                             //success
-                            commentList.add(Comment("", FeedUser(id=userId,name = userName),messageBody = commentText.get()))
-                            detailsPageCallback.onCommentsLoaded(commentList,true)
+                            commentList.add(Comment("", FeedUser(id = userId, name = userName, profilePic = profilePic), messageBody = commentText.get()))
+                            detailsPageCallback.onCommentsLoaded(commentList, true)
                             commentText.set("")
                         }
                     }
@@ -54,6 +56,7 @@ class DetailPageViewModel(var feedItem: FeedItem, var context: Context, var deta
 
                 override fun onFailure(call: Call<UpdatePostModel>?, t: Throwable?) {
                     Log.d("onFailure", "called")
+                    Toast.makeText(context,"Something went wrong! Please try later", Toast.LENGTH_SHORT).show()
 
                 }
             })

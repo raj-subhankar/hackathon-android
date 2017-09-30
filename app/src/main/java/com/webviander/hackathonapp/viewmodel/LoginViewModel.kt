@@ -5,6 +5,7 @@ import android.content.Context
 import android.databinding.ObservableField
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.pixplicity.easyprefs.library.Prefs
 import com.webviander.hackathonapp.data.ApiFactory
 import com.webviander.hackathonapp.model.User
@@ -50,12 +51,15 @@ class LoginViewModel(val context: Context) : Observable() {
                     Prefs.putString(PreferenceUtil.USEREMAIL, user.email)
                     Prefs.putString(PreferenceUtil.USERID, user.id)
                     Prefs.putString(PreferenceUtil.USERTOKEN, user.token)
+                    Prefs.putString(PreferenceUtil.USERTOKEN, user.profilePicUrl)
                     Prefs.putString(PreferenceUtil.ISREPRESENTATIVE, user.isRepresentative.toString())
                     context.startActivity(FeedActivity.getIntent(context))
                     (context as Activity).finish()
                 }
+                else {
+                    Toast.makeText(context,user.message,Toast.LENGTH_SHORT).show()
+                }
             }
-
         }
 
     }
@@ -75,6 +79,7 @@ class LoginViewModel(val context: Context) : Observable() {
                     override fun onFailure(call: Call<User>?, t: Throwable?) {
                         Log.d("onFailure", "called")
                         t?.printStackTrace()
+                        Toast.makeText(context,"Something went wrong! Please try later",Toast.LENGTH_SHORT).show()
                     }
 
                 })

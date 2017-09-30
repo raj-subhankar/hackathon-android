@@ -4,11 +4,15 @@ import android.app.Activity
 import android.content.Context
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import android.databinding.BindingAdapter
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import com.android.databinding.library.baseAdapters.BR
 import com.pixplicity.easyprefs.library.Prefs
+import com.squareup.picasso.Picasso
+import com.webviander.hackathonapp.R
 import com.webviander.hackathonapp.data.ApiFactory
 import com.webviander.hackathonapp.model.FeedItem
 import com.webviander.hackathonapp.model.FeedUser
@@ -39,6 +43,14 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
 
     fun getPoster(): String {
         return feedItem.postedBy.name + ""
+    }
+
+    fun getProfilePicture(): String {
+        return feedItem.postedBy.profilePic + ""
+    }
+
+    fun getAssigneePhoto(): String {
+        return feedItem.pickedUpBy?.profilePic + ""
     }
 
     fun getTitleText(): String {
@@ -110,6 +122,7 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
                 override fun onFailure(call: Call<VoteModel>?, t: Throwable?) {
                     Log.d("onFailure", "called")
                     t?.printStackTrace()
+                    Toast.makeText(context,"Something went wrong! Please try later",Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onResponse(call: Call<VoteModel>?, response: Response<VoteModel>?) {
@@ -135,6 +148,7 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
                 override fun onFailure(call: Call<VoteModel>?, t: Throwable?) {
                     Log.d("onFailure", "called " + call?.request()?.url() + "")
                     t?.printStackTrace()
+                    Toast.makeText(context,"Something went wrong! Please try later",Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onResponse(call: Call<VoteModel>?, response: Response<VoteModel>?) {
@@ -177,11 +191,19 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
                 override fun onFailure(call: Call<UpdatePostModel>?, t: Throwable?) {
                     Log.d("onFailure", "called")
                     t?.printStackTrace()
-
+                    Toast.makeText(context,"Something went wrong! Please try later",Toast.LENGTH_SHORT).show()
                 }
 
             })
         }
     }
+}
 
+@BindingAdapter("imageUrl")
+fun loadImage(view: ImageView, imageUrl: String) {
+    var localImageUrl = imageUrl
+    if (localImageUrl.isEmpty()) {
+        localImageUrl = "http://www.gravatar.com/avatar/8a16c550a6523fd8bcf23c6631b9ff85.jpg?s=80&d=identicon&r=PG"
+    }
+    Picasso.with(view.context).load(localImageUrl).placeholder(R.drawable.user_img).into(view)
 }

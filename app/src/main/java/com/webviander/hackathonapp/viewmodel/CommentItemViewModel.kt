@@ -16,6 +16,10 @@ class CommentItemViewModel(var commentItem: Comment, var context: Context) : Bas
         return "Guest"
     }
 
+    fun getProfilePicture(): String {
+        return commentItem.postedBy?.profilePic + ""
+    }
+
     fun getCommentText(): String {
         return commentItem.messageBody
     }

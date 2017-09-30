@@ -52,7 +52,7 @@ class AddFeedViewModel(val context: Context) : Observable() {
 
                 override fun onFailure(call: Call<AddPostModel>?, t: Throwable?) {
                     Log.d("onFailure", "called ")
-                    Toast.makeText(context,"Something went wrong", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,"Something went wrong! Please try later",Toast.LENGTH_SHORT).show()
                     t?.printStackTrace()
                     context.startActivity(FeedActivity.getIntent(context))
                     (context as Activity).finish()

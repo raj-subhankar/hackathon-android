@@ -3,6 +3,7 @@ package com.webviander.hackathonapp.viewmodel
 import android.content.Context
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.webviander.hackathonapp.data.ApiFactory
 import com.webviander.hackathonapp.model.FeedItem
 import retrofit2.Call
@@ -33,6 +34,7 @@ class FeedViewModel(val context: Context) : Observable() {
         ApiFactory().createFeedsService().getFeeds(latitude.toString(), longitude.toString()).enqueue(object : Callback<List<FeedItem>> {
             override fun onFailure(call: Call<List<FeedItem>>?, t: Throwable?) {
                 Log.d("onFailure", "called")
+                Toast.makeText(context,"Something went wrong! Please try later", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<List<FeedItem>>?, response: Response<List<FeedItem>>?) {

@@ -15,6 +15,7 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding = "5dp"
         android:onClick="@{viewModel.onItemClick}">
 
         <android.support.v7.widget.CardView
@@ -22,13 +23,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            app:cardElevation="30dp"
+            app:cardElevation="20dp"
             app:cardPreventCornerOverlap="false">
 
             <ImageView
                 android:layout_width="52dp"
                 android:layout_height="52dp"
-                android:src="@drawable/user_img" />
+                imageUrl="@{viewModel.profilePicture}"
+                tools:src="@drawable/user_img" />
 
         </android.support.v7.widget.CardView>
 
@@ -142,7 +144,8 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                android:src="@drawable/user_img"/>
+                                imageUrl="@{viewModel.assigneePhoto}"
+                                tools:src="@drawable/user_img"/>
                         </android.support.v7.widget.CardView>
 
                         <TextView
