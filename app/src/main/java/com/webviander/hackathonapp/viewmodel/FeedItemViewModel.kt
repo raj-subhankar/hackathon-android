@@ -18,18 +18,28 @@ import com.webviander.hackathonapp.view.DetailsActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
 
 /**
  * Created by vivek-3102 on 23/09/17.
  */
 class FeedItemViewModel(var feedItem: FeedItem, var context: Context) : BaseObservable() {
 
+    val dateFormat = SimpleDateFormat("dd-MM :: hh:mm")
     fun getTimeStamp(): String {
-        return feedItem.timeStamp.toString()
+        return feedItem.timeStamp.substring(0, 10)
+    }
+
+    fun getPickedUpBy(): String {
+        return feedItem.pickedUpBy?.name.toString()
+    }
+
+    fun getPoster(): String {
+        return feedItem.postedBy.name + ""
     }
 
     fun getTitleText(): String {
-        return feedItem.postedBy.name + " has posted this message"
+        return feedItem.messageTitle
     }
 
     fun getPostBody(): String {
@@ -52,6 +62,11 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context) : BaseObse
 
     fun shouldShowPickup(): Int {
         val isRep = Prefs.getString(PreferenceUtil.ISREPRESENTATIVE, null)
+
+        if (feedItem.pickedUpBy != null) {
+            //already picked up
+            return View.GONE
+        }
         isRep?.let {
             val isRepBool = isRep.toBoolean()
             return if (isRepBool) {
@@ -61,6 +76,14 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context) : BaseObse
             }
         }
         return View.GONE
+    }
+
+    fun shouldShowAssignee(): Int {
+        return if (feedItem.pickedUpBy != null) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
     }
 
     fun onItemClick(view: View) {
@@ -118,13 +141,13 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context) : BaseObse
     }
 
     fun onPickupClick(view: View) {
-        val userId = Prefs.getString(PreferenceUtil.USERID,null)
+        val userId = Prefs.getString(PreferenceUtil.USERID, null)
         userId?.let {
-            ApiFactory().createFeedsService().addAssignee(feedItem.id,it).enqueue(object : Callback<UpdatePostModel> {
+            ApiFactory().createFeedsService().addAssignee(feedItem.id, it).enqueue(object : Callback<UpdatePostModel> {
                 override fun onResponse(call: Call<UpdatePostModel>?, response: Response<UpdatePostModel>?) {
                     Log.d("onResponse", "${call?.request()?.url()} with field ${call?.request()?.body().toString()} called ${response?.body()}")
                     val updatePostModel = response?.body()
-                    if(updatePostModel?.message.equals("Post updated")) {
+                    if (updatePostModel?.message.equals("Post updated")) {
                         //success
                         feedItem.postedBy = FeedUser(userId)
                     }

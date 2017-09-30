@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <data>
@@ -44,6 +45,7 @@
                 android:orientation="vertical">
 
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -53,6 +55,18 @@
                     android:orientation="horizontal"
                     android:padding="5dp">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:layout_weight="1"
+                        android:lines="1"
+                        android:layout_marginStart="50dp"
+                        android:text="@{viewModel.poster}"
+                        android:ellipsize="end"
+                        tools:text="Hello Hello world how are you" />
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -67,7 +81,8 @@
                         android:layout_marginEnd="20dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:gravity="center"
-                        android:text="@{viewModel.timeStamp}" />
+                        android:text="@{viewModel.timeStamp}"
+                        tools:text="Hello" />
 
                 </LinearLayout>
 
@@ -82,7 +97,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@{viewModel.titleText}"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="Some Sample text" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -92,9 +108,53 @@
                         android:fontFamily="@font/montserrat"
                         android:lineSpacingExtra="4dp"
                         android:lines="3"
-                        android:text="@{viewModel.postBody}" />
+                        android:text="@{viewModel.postBody}"
+                        tools:text="Some sample post body Some sample post body Some sample post body Some sample post body Some sample post body Some sample post body " />
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e3e3e3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:visibility="@{viewModel.shouldShowAssignee}"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat"
+                        android:layout_marginBottom="5dp"
+                        android:text="This post has been picked up by:"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="horizontal">
+                        <android.support.v7.widget.CardView
+                            android:layout_width="wrap_content"
+                            app:cardElevation="8dp"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/user_img"/>
+                        </android.support.v7.widget.CardView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="5dp"
+                            android:fontFamily="@font/montserrat_bold"
+                            tools:text="S R Raja - MLA"
+                            android:text="@{viewModel.getPickedUpBy}"/>
+                    </LinearLayout>
+                </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -117,7 +177,8 @@
                         android:onClick="@{viewModel.onThumbsUp}"
                         android:padding="12dp"
                         android:text="@{viewModel.thumbsUp}"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:text="10" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -130,7 +191,8 @@
                         android:onClick="@{viewModel.onThumbsDown}"
                         android:padding="12dp"
                         android:text="@{viewModel.thumbsDown}"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:text="20" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -143,7 +205,8 @@
                         android:onClick="@{viewModel.onItemClick}"
                         android:padding="12dp"
                         android:text="@{viewModel.commentsCount}"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:text="5" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -153,11 +216,11 @@
                         android:drawablePadding="8dp"
                         android:drawableStart="@drawable/comments"
                         android:gravity="center"
-                        android:padding="12dp"
-                        android:visibility="@{viewModel.shouldShowPickup}"
                         android:onClick="@{viewModel.onPickupClick}"
+                        android:padding="12dp"
                         android:src="@drawable/id_card"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:visibility="@{viewModel.shouldShowPickup}" />
                 </LinearLayout>
 
             </LinearLayout>
