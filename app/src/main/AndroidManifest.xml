@@ -12,22 +12,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.LoginActivity">
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".view.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.RegisterActivity" />
+        <activity
+            android:name=".view.RegisterActivity"
+            android:screenOrientation="portrait" />
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-
-        <activity android:name=".view.FeedActivity" />
-        <activity android:name=".view.DetailsActivity" />
-        <activity android:name=".view.AddFeedActivity"></activity>
+        <activity
+            android:name=".view.FeedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.DetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.AddFeedActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
