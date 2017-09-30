@@ -1,7 +1,6 @@
 package com.webviander.hackathonapp.data
 
-import com.webviander.hackathonapp.model.FeedItem
-import com.webviander.hackathonapp.model.User
+import com.webviander.hackathonapp.model.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -15,15 +14,20 @@ interface FeedsService {
 
     @FormUrlEncoded
     @POST("posts/upvote")
-    fun upVote(@Field("post_id") postId: String, @Field("user_id") userId: String): Call<String>
+    fun upVote(@Field("post_id") postId: String, @Field("user_id") userId: String): Call<VoteModel>
 
     @FormUrlEncoded
     @POST("posts/downvote")
-    fun downVote(@Field("post_id") postId: String, @Field("user_id") userId: String): Call<String>
+    fun downVote(@Field("post_id") postId: String, @Field("user_id") userId: String): Call<VoteModel>
 
     @FormUrlEncoded
     @POST("posts/add")
-    fun downVote(@Field("user") userId: String,@Field("messageTitle") messageTitle: String,@Field("messageBody") messageBody: String, @Field("location") location: String): Call<String>
+    fun addPost(@Field("user") userId: String,@Field("messageTitle") messageTitle: String,@Field("messageBody") messageBody: String, @Field("lat") latitude: String, @Field("lng") longitude: String): Call<AddPostModel>
+
+    @FormUrlEncoded
+    @POST("posts/{id}")
+    fun addAssignee(@Path("id") postId: String, @Field("pickedUpBy") pickedUpBy: String): Call<UpdatePostModel>
+
 
 //    @FormUrlEncoded
 //    @POST("users/add")

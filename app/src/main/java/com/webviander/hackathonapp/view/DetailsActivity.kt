@@ -43,12 +43,13 @@ class DetailsActivity : AppCompatActivity() {
     fun setUpViewModel() {
         binding.viewModel = DetailPageViewModel(feedItem, this, object : DetailsPageCallback {
             override fun onBackPressed() {
-                onBackPressed()
+                onBack()
             }
 
             override fun onCommentsLoaded(commentsList: ArrayList<Comment>) {
                 val adapter = binding.commentsList.adapter as CommentsAdapter
                 adapter.commentsList = commentsList
+                adapter.feedItem = feedItem
 
             }
         })
@@ -58,6 +59,10 @@ class DetailsActivity : AppCompatActivity() {
         val adapter = CommentsAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+    }
+
+    fun onBack() {
+        onBackPressed()
     }
 
 

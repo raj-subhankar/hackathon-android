@@ -27,9 +27,11 @@ class LoginViewModel(val context: Context) : Observable() {
 
     init {
         val userId = Prefs.getString(PreferenceUtil.USERID, null)
+        val isRepresentative = Prefs.getString(PreferenceUtil.ISREPRESENTATIVE, null)
         if (userId != null) {
             //user is logged in.
             Log.d("UserLoggedIn", userId)
+            Log.d("isRepresentative", isRepresentative)
             context.startActivity(FeedActivity.getIntent(context))
             (context as Activity).finish()
         }

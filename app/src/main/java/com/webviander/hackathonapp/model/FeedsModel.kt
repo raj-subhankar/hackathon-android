@@ -18,6 +18,10 @@ data class FeedItem(
         @SerializedName("user")
         @Expose
         var postedBy: FeedUser,
+
+        @SerializedName("pickedUpBy")
+        @Expose
+        var pickedUpBy: FeedUser? = null,
         @SerializedName("__v")
         @Expose
         var v: Int,
@@ -81,7 +85,7 @@ data class FeedUser(
         var loginAttempts: Int? = null,
         @SerializedName("profilePic")
         @Expose
-        var profilePic: String
+        var profilePic: String? = null
 ) : Serializable
 
 data class Comment(
@@ -112,30 +116,66 @@ data class Location(
 
 ) : Serializable
 
-//
-//data class UserDetails(
-//
-//        @SerializedName("_id")
-//        @Expose
-//        var id: String? = null,
-//        @SerializedName("email")
-//        @Expose
-//        var email: String? = null,
-//        @SerializedName("password")
-//        @Expose
-//        var password: String? = null,
-//        @SerializedName("__v")
-//        @Expose
-//        var v: Int? = null,
-//        var name: String,
-//        @SerializedName("loginAttempts")
-//        @Expose
-//        var loginAttempts: Int? = null
-//) : Serializable
-//
-//
-//data class CommentItem(
-//        var id: String,
-//        var commentBody: String,
-//        var postedBy: UserDetails
-//) : Serializable
+
+data class AddPostModel(
+        @SerializedName("__v")
+        @Expose
+        var v: Int? = null,
+        @SerializedName("user")
+        @Expose
+        var user: String? = null,
+        @SerializedName("_id")
+        @Expose
+        var id: String? = null,
+        @SerializedName("commentCount")
+        @Expose
+        var commentCount: Int? = null,
+        @SerializedName("comments")
+        @Expose
+        var comments: List<Any>? = null,
+        @SerializedName("downVotes")
+        @Expose
+        var downVotes: List<Any>? = null,
+        @SerializedName("downVoteCount")
+        @Expose
+        var downVoteCount: Int? = null,
+        @SerializedName("upVotes")
+        @Expose
+        var upVotes: List<Any>? = null,
+        @SerializedName("upVoteCount")
+        @Expose
+        var upVoteCount: Int? = null,
+        @SerializedName("location")
+        @Expose
+        var location: Location? = null,
+        @SerializedName("imageUrl")
+        @Expose
+        var imageUrl: String? = null,
+        @SerializedName("messageBody")
+        @Expose
+        var messageBody: String? = null,
+        @SerializedName("messageTitle")
+        @Expose
+        var messageTitle: String? = null,
+        @SerializedName("timeStamp")
+        @Expose
+        var timeStamp: String? = null
+)
+
+data class VoteModel(
+        @SerializedName("message")
+        @Expose
+        var message: String? = null,
+        @SerializedName("upVoteCount")
+        @Expose
+        var upVoteCount: Int,
+        @SerializedName("downVoteCount")
+        @Expose
+        var downVoteCount: Int
+)
+
+data class UpdatePostModel(
+        @SerializedName("message")
+        @Expose
+        var message: String
+)

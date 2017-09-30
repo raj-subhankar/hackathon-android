@@ -11,9 +11,11 @@ import android.util.Log
 import com.akhgupta.easylocation.EasyLocationAppCompatActivity
 import com.akhgupta.easylocation.EasyLocationRequestBuilder
 import com.google.android.gms.location.LocationRequest
+import com.pixplicity.easyprefs.library.Prefs
 import com.webviander.hackathonapp.R
 import com.webviander.hackathonapp.databinding.ActivityFeedBinding
 import com.webviander.hackathonapp.model.FeedItem
+import com.webviander.hackathonapp.util.PreferenceUtil
 import com.webviander.hackathonapp.viewmodel.FeedViewModel
 import java.util.*
 
@@ -28,6 +30,7 @@ class FeedActivity : EasyLocationAppCompatActivity(), Observer {
         setUpFeeds(binding.feedsList)
         binding.viewModel?.let { setUpObserver(it) }
         setUpLocation()
+        setUpLocalLocation()
 
     }
 
@@ -61,8 +64,16 @@ class FeedActivity : EasyLocationAppCompatActivity(), Observer {
                 .build()
 
         requestSingleLocationFix(easyLocationRequest)
+    }
 
-
+    fun setUpLocalLocation() {
+        val prefLat = Prefs.getString(PreferenceUtil.LATITUDE, null)
+        val prefLng = Prefs.getString(PreferenceUtil.LONGITUDE, null)
+        if (prefLat != null && prefLng != null) {
+            //we have old location data. use it and display first.
+            // later when location is got, we can refresh with new data
+            binding.viewModel?.loadFeeds(prefLat.toDouble(), prefLng.toDouble())
+        }
     }
 
     override fun update(p0: Observable?, p1: Any?) {
@@ -88,6 +99,7 @@ class FeedActivity : EasyLocationAppCompatActivity(), Observer {
 
     fun onAddClicked() {
         startActivity(AddFeedActivity.getIntent(this))
+        finish()
     }
 
     override fun onLocationProviderDisabled() {
@@ -115,9 +127,10 @@ class FeedActivity : EasyLocationAppCompatActivity(), Observer {
         location?.let {
             //lat=12.8333&lng=80.0667
 //            binding.viewModel?.loadFeeds(12.8333, 80.0667)
+            Prefs.putString(PreferenceUtil.LATITUDE, location.latitude.toString())
+            Prefs.putString(PreferenceUtil.LONGITUDE, location.longitude.toString())
             binding.viewModel?.loadFeeds(location.latitude, location.longitude)
         }
-
     }
 
     companion object {

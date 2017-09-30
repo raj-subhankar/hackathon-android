@@ -144,6 +144,20 @@
                         android:padding="12dp"
                         android:text="@{viewModel.commentsCount}"
                         android:textSize="20sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:drawablePadding="8dp"
+                        android:drawableStart="@drawable/comments"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:visibility="@{viewModel.shouldShowPickup}"
+                        android:onClick="@{viewModel.onPickupClick}"
+                        android:src="@drawable/id_card"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
             </LinearLayout>

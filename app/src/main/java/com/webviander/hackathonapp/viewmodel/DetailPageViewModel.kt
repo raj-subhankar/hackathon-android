@@ -12,37 +12,13 @@ import com.webviander.hackathonapp.model.FeedItem
 class DetailPageViewModel(var feedItem: FeedItem, var context: Context, var detailsPageCallback: DetailsPageCallback) : BaseObservable() {
     var commentList: ArrayList<Comment> = ArrayList()
 
-    fun getTimeStamp(): String {
-        return feedItem.timeStamp.toString()
-    }
-
-    fun getTitleText(): String {
-        return feedItem.postedBy.name + " has posted this message"
-    }
-
-    fun getPostBody(): String {
-        return feedItem.messageBody
-    }
-
-    fun getThumbsUp(): String {
-        return feedItem.upVoteCount.toString()
-    }
-
-    fun getThumbsDown(): String {
-        return feedItem.downVoteCount.toString()
-    }
-
-    fun getCommentsCount(): String {
-        return feedItem.commentCount.toString()
+    fun loadComments() {
+        commentList.addAll(feedItem.comments)
+        detailsPageCallback.onCommentsLoaded(commentList)
     }
 
     fun onBackClick(view: View) {
         detailsPageCallback.onBackPressed()
-    }
-
-    fun loadComments() {
-        commentList.addAll(feedItem.comments)
-        detailsPageCallback.onCommentsLoaded(commentList)
     }
 }
 
