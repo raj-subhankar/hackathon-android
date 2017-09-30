@@ -16,9 +16,17 @@ import kotlin.collections.ArrayList
  */
 class FeedViewModel(val context: Context) : Observable() {
     val backPressedTag = "BACK_PRESSED"
-    val feedsLoadedTag = "FEEDS_LOADED"
+    val pendingLoadedTag = "PENDING_LOADED"
+    val ongoingLoadedTag = "ONGOING_LOADED"
     val addFeedsClickedTag = "ADD_FEEDS"
-    var feedsList: ArrayList<FeedItem> = ArrayList()
+    var pendingList: ArrayList<FeedItem> = ArrayList()
+    var ongoingList: ArrayList<FeedItem> = ArrayList()
+
+    enum class STATE {
+        PENDING, ONGOING
+    }
+
+    var currentState: STATE = STATE.PENDING
 
     fun loadFeeds(latitude: Double?, longitude: Double?) {
         Log.d("getFeeds", "Calling with $latitude::$longitude")
@@ -29,15 +37,40 @@ class FeedViewModel(val context: Context) : Observable() {
 
             override fun onResponse(call: Call<List<FeedItem>>?, response: Response<List<FeedItem>>?) {
                 Log.d("onResponse", "called ${response?.body()}")
-                feedsList.clear()
-                response?.body()?.let { feedsList.addAll(it) }
+                pendingList.clear()
+                ongoingList.clear()
+                response?.body()?.let {
+                    for (feedItem in it) {
+                        if (feedItem.pickedUpBy == null) {
+                            pendingList.add(feedItem)
+                        } else {
+                            ongoingList.add(feedItem)
+                        }
+                    }
+                }
                 setChanged()
-                notifyObservers(feedsLoadedTag)
+                if (currentState == STATE.PENDING) {
+                    notifyObservers(pendingLoadedTag)
+                } else {
+                    notifyObservers(ongoingLoadedTag)
+                }
             }
 
         })
 
 
+    }
+
+    fun onPendingClick(view: View) {
+        currentState = STATE.PENDING
+        setChanged()
+        notifyObservers(pendingLoadedTag)
+    }
+
+    fun onOngoingClick(view: View) {
+        currentState = STATE.ONGOING
+        setChanged()
+        notifyObservers(ongoingLoadedTag)
     }
 
     fun onBackClick(view: View) {

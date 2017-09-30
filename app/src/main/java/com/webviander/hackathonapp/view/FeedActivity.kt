@@ -17,6 +17,7 @@ import com.webviander.hackathonapp.databinding.ActivityFeedBinding
 import com.webviander.hackathonapp.model.FeedItem
 import com.webviander.hackathonapp.util.PreferenceUtil
 import com.webviander.hackathonapp.viewmodel.FeedViewModel
+import kotlinx.android.synthetic.main.activity_feed.*
 import java.util.*
 
 
@@ -82,8 +83,14 @@ class FeedActivity : EasyLocationAppCompatActivity(), Observer {
             p1?.let {
                 if (p1 == p0.backPressedTag) {
                     onBackPressed()
-                } else if (p1 == p0.feedsLoadedTag) {
-                    onFeedsLoaded(p0.feedsList)
+                } else if (p1 == p0.pendingLoadedTag) {
+                    ongoing.background = null
+                    pending.setBackgroundResource(R.drawable.border_rectangle)
+                    onFeedsLoaded(p0.pendingList)
+                } else if (p1 == p0.ongoingLoadedTag) {
+                    pending.background = null
+                    ongoing.setBackgroundResource(R.drawable.border_rectangle)
+                    onFeedsLoaded(p0.ongoingList)
                 } else if (p1 == p0.addFeedsClickedTag) {
                     onAddClicked()
                 }
