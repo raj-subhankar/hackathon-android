@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import com.webviander.hackathonapp.R
 import com.webviander.hackathonapp.databinding.ActivityDetailsBinding
 import com.webviander.hackathonapp.model.Comment
@@ -46,11 +49,16 @@ class DetailsActivity : AppCompatActivity() {
                 onBack()
             }
 
-            override fun onCommentsLoaded(commentsList: ArrayList<Comment>) {
+            override fun onCommentsLoaded(commentsList: ArrayList<Comment>, newCommentAdded: Boolean) {
                 val adapter = binding.commentsList.adapter as CommentsAdapter
                 adapter.commentsList = commentsList
                 adapter.feedItem = feedItem
-
+                val view: TextView = comment_text_entry
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
+                if(newCommentAdded) {
+                    comments_list.smoothScrollToPosition(commentsList.size+1)
+                }
             }
         })
     }
@@ -63,6 +71,11 @@ class DetailsActivity : AppCompatActivity() {
 
     fun onBack() {
         onBackPressed()
+    }
+
+    override fun onBackPressed() {
+        startActivity(FeedActivity.getIntent(this))
+        finish()
     }
 
 

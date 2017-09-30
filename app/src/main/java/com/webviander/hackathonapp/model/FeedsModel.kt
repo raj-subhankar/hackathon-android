@@ -94,16 +94,16 @@ data class Comment(
         var id: String,
         @SerializedName("postedBy")
         @Expose
-        var postedBy: FeedUser,
+        var postedBy: FeedUser?= null,
         @SerializedName("__v")
         @Expose
-        var v: Int,
+        var v: Int?= null,
         @SerializedName("messageBody")
         @Expose
         var messageBody: String,
         @SerializedName("timeStamp")
         @Expose
-        var timeStamp: String
+        var timeStamp: String?= null
 ) : Serializable
 
 data class Location(

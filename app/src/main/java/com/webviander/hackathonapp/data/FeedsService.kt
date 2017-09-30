@@ -1,6 +1,9 @@
 package com.webviander.hackathonapp.data
 
-import com.webviander.hackathonapp.model.*
+import com.webviander.hackathonapp.model.AddPostModel
+import com.webviander.hackathonapp.model.FeedItem
+import com.webviander.hackathonapp.model.UpdatePostModel
+import com.webviander.hackathonapp.model.VoteModel
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -22,12 +25,16 @@ interface FeedsService {
 
     @FormUrlEncoded
     @POST("posts/add")
-    fun addPost(@Field("user") userId: String,@Field("messageTitle") messageTitle: String,@Field("messageBody") messageBody: String, @Field("lat") latitude: String, @Field("lng") longitude: String): Call<AddPostModel>
+    fun addPost(@Field("user") userId: String, @Field("messageTitle") messageTitle: String, @Field("messageBody") messageBody: String, @Field("lat") latitude: String, @Field("lng") longitude: String): Call<AddPostModel>
 
     @FormUrlEncoded
     @POST("posts/{id}")
     fun addAssignee(@Path("id") postId: String, @Field("pickedUpBy") pickedUpBy: String): Call<UpdatePostModel>
 
+
+    @FormUrlEncoded
+    @POST("posts/comment")
+    fun addComment(@Field("post_id") postId: String, @Field("postedBy") postedBy: String, @Field("messageBody") messageBody: String): Call<UpdatePostModel>
 
 //    @FormUrlEncoded
 //    @POST("users/add")

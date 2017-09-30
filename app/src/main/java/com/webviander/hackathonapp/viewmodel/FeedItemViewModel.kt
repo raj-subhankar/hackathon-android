@@ -1,5 +1,6 @@
 package com.webviander.hackathonapp.viewmodel
 
+import android.app.Activity
 import android.content.Context
 import android.databinding.BaseObservable
 import android.databinding.Bindable
@@ -27,7 +28,7 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
 
     val dateFormat = SimpleDateFormat("dd-MM :: hh:mm")
     fun getTimeStamp(): String {
-        return feedItem.timeStamp.substring(0, 10)
+        return feedItem.timeStamp
     }
 
     fun getPickedUpBy(): String {
@@ -96,6 +97,7 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
     fun onItemClick(view: View) {
         if (isFromFeedsList) {
             context.startActivity(DetailsActivity.getIntent(view.context, feedItem))
+            (context as Activity).finish()
         }
     }
 

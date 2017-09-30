@@ -41,7 +41,7 @@ class CommentsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 }
             }
             is CommentItemsViewHolder -> {
-                holder.bindFeed(commentsList[position])
+                holder.bindFeed(commentsList[position-1])
             }
         }
     }

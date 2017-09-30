@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <data>
@@ -12,15 +14,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_margin="10dp"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:padding="10dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
+                android:padding="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -41,24 +42,20 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="@{viewModel.posterName}" />
+                    android:text="@{viewModel.posterName}"
+                    tools:text="Vivek Chanddru"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:ellipsize="end"
                     android:fontFamily="@font/montserrat"
+                    tools:text="Some random comment Some random comment Some random comment Some random comment Some random comment"
                     android:text="@{viewModel.commentText}" />
             </LinearLayout>
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginEnd="10dp"
-            android:background="#e3e3e3" />
 
     </LinearLayout>
 </layout>

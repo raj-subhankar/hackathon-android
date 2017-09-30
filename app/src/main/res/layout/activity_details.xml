@@ -28,8 +28,9 @@
             tools:ignore="UseCompoundDrawables">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
                 android:layout_gravity="start|center_vertical"
                 android:contentDescription="@string/back_button_cd"
                 android:onClick="@{viewModel::onBackClick}"
@@ -49,7 +50,8 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -68,6 +70,38 @@
                     tools:listitem="@layout/comment_list_item" />
             </android.support.v7.widget.CardView>
         </FrameLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="30dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:hint="Add a comment"
+                    android:id="@+id/comment_text_entry"
+                    android:text="@={viewModel.commentText}" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:onClick="@{viewModel.onSendClick}"
+                    android:src="@drawable/send_comment" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 
 

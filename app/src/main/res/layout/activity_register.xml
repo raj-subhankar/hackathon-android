@@ -25,11 +25,12 @@
             tools:ignore="UseCompoundDrawables">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="start|center_vertical"
                 android:contentDescription="@string/back_button_cd"
                 android:onClick="@{viewModel::onBackClick}"
+                android:padding="5dp"
                 android:src="@drawable/left_arrow" />
 
             <TextView

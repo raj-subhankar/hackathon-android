@@ -218,7 +218,7 @@
                         android:gravity="center"
                         android:onClick="@{viewModel.onPickupClick}"
                         android:padding="12dp"
-                        android:src="@drawable/id_card"
+                        android:src="@drawable/pickup"
                         android:textSize="20sp"
                         android:visibility="@{viewModel.shouldShowPickup}" />
                 </LinearLayout>

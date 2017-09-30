@@ -10,7 +10,7 @@ import com.webviander.hackathonapp.model.Comment
 class CommentItemViewModel(var commentItem: Comment, var context: Context) : BaseObservable() {
 
     fun getPosterName(): String {
-        commentItem.postedBy.name?.let {
+        commentItem.postedBy?.name?.let {
             return it
         }
         return "Guest"
