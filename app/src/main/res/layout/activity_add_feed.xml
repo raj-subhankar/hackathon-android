@@ -63,6 +63,16 @@
                     android:src="@drawable/save_post" />
             </FrameLayout>
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Post Title"
+                android:padding="15dp"
+                android:text="@={viewModel.postTitle}"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_bold"
+                />
 
             <EditText
                 android:id="@+id/add_post_edittext"
@@ -71,8 +81,9 @@
                 android:background="@color/transparent"
                 android:fontFamily="@font/montserrat"
                 android:gravity="start|top"
+                android:hint="Post Content"
                 android:lineSpacingExtra="6dp"
-                android:padding="30dp"
+                android:padding="15dp"
                 android:text="@={viewModel.postBody}"
                 android:textAlignment="viewStart"
                 android:textSize="20sp" />

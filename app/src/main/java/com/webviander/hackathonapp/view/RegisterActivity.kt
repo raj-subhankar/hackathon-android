@@ -49,7 +49,7 @@ class RegisterActivity : AppCompatActivity(), Observer {
         if (p0 is RegisterViewModel) {
             p1?.let {
                 if (p1 == p0.backPressedTag) {
-                    startActivity(FeedActivity.getIntent(this))
+                    startActivity(LoginActivity.getIntent(this))
                     finish()
                 }
             }

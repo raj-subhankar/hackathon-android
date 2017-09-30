@@ -109,7 +109,7 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/montserrat"
                         android:lineSpacingExtra="4dp"
-                        android:lines="@{viewModel.getLinesCount}"
+                        android:maxLines="@{viewModel.getLinesCount}"
                         android:text="@{viewModel.postBody}"
                         tools:text="Some sample post body Some sample post body Some sample post body Some sample post body Some sample post body Some sample post body " />
                 </LinearLayout>

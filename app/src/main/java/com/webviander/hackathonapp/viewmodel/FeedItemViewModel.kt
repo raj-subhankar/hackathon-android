@@ -78,7 +78,7 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
     fun getLinesCount() = if (isFromFeedsList) {
         3
     } else {
-        0
+        Integer.MAX_VALUE
     }
 
 
@@ -122,7 +122,7 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
                 override fun onFailure(call: Call<VoteModel>?, t: Throwable?) {
                     Log.d("onFailure", "called")
                     t?.printStackTrace()
-                    Toast.makeText(context,"Something went wrong! Please try later",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Something went wrong! Please try later", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onResponse(call: Call<VoteModel>?, response: Response<VoteModel>?) {
@@ -148,7 +148,7 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
                 override fun onFailure(call: Call<VoteModel>?, t: Throwable?) {
                     Log.d("onFailure", "called " + call?.request()?.url() + "")
                     t?.printStackTrace()
-                    Toast.makeText(context,"Something went wrong! Please try later",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Something went wrong! Please try later", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onResponse(call: Call<VoteModel>?, response: Response<VoteModel>?) {
@@ -191,7 +191,7 @@ class FeedItemViewModel(var feedItem: FeedItem, var context: Context, var isFrom
                 override fun onFailure(call: Call<UpdatePostModel>?, t: Throwable?) {
                     Log.d("onFailure", "called")
                     t?.printStackTrace()
-                    Toast.makeText(context,"Something went wrong! Please try later",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Something went wrong! Please try later", Toast.LENGTH_SHORT).show()
                 }
 
             })

@@ -1,5 +1,7 @@
 package com.webviander.hackathonapp.view
 
+import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -34,6 +36,12 @@ class LoginActivity : AppCompatActivity(), Observer {
 
     override fun update(p0: Observable?, p1: Any?) {
         Log.d("update", "called")
+    }
+
+    companion object {
+        fun getIntent(context: Context) : Intent {
+            return Intent(context,LoginActivity::class.java)
+        }
     }
 
 }

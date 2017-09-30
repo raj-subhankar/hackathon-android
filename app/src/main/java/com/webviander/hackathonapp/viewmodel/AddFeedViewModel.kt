@@ -24,6 +24,7 @@ class AddFeedViewModel(val context: Context) : Observable() {
     val savePostTag = "SAVE_POST"
 
     var postBody: ObservableField<String> = ObservableField("")
+    var postTitle: ObservableField<String> = ObservableField("")
 
     fun onBackClick(view: View) {
 //        setChanged()
@@ -43,7 +44,7 @@ class AddFeedViewModel(val context: Context) : Observable() {
         Log.d("addPostApi", "$lat $lng")
         val userId = Prefs.getString(PreferenceUtil.USERID, null)
         userId?.let {
-            ApiFactory().createFeedsService().addPost(userId, "Some Sample title", postBody.get(), lat, lng).enqueue(object : Callback<AddPostModel> {
+            ApiFactory().createFeedsService().addPost(userId, postTitle.get(), postBody.get(), lat, lng).enqueue(object : Callback<AddPostModel> {
                 override fun onResponse(call: Call<AddPostModel>?, response: Response<AddPostModel>?) {
                     Log.d("onResponse", "called ${response?.body()} ${call?.request()?.url()}")
                     context.startActivity(FeedActivity.getIntent(context))
